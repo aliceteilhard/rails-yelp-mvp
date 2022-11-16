@@ -12,11 +12,12 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    category = restaurant_params[:category].downcase
-    restaurant = Restaurant.new(restaurant_params)
-    restaurant.category = category
-    restaurant.save
-    redirect_to restaurant_path(restaurant)
+    @restaurant = Restaurant.new(restaurant_params)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def restaurant_params
