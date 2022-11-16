@@ -12,9 +12,11 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    restaurant = Restaurant.new(task_params)
+    category = restaurant_params[:category].downcase
+    restaurant = Restaurant.new(restaurant_params)
+    restaurant.category = category
     restaurant.save
-    # redirect_to restaurant_path?
+    redirect_to restaurant_path(restaurant)
   end
 
   def restaurant_params
@@ -24,11 +26,17 @@ end
 
 
 
-
-
-# need a route so that a visitor can see the list of all restaurants
-#   get "restaurants", to: "restaurants#index"
-
-
 # need a route so visitor can add a new restaurant, and be redirected to the show view of the new restaurant
+# refers to GET "restaurants/new"
+# POST "restaurants"
+
+
+
+
+
+
+
+
+
+
 # need a route so the visitor can see the details of a restaurant with all the reviews related to the restaurant
