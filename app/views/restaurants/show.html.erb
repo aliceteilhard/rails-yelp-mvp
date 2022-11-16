@@ -1,2 +1,4 @@
 <h1>The Individual Restaurant You Chose </h1>
 <h2><%= @restaurant.name %></h2>
+
+<h3><%= link_to "Add a Review", new_restaurant_review_path(@restaurant)%></h3>
